@@ -1,6 +1,18 @@
+const faker = require('faker');
+const { development } = require('../../config/knexfile');
+const env = process.env.NODE_ENV || 'development';
+
+const profiles = [...new Array(5)].map((i) => ({
+  id: faker.random.alphaNumeric(20),
+  avatarUrl: faker.image.avatar(),
+  email: faker.internet.email(),
+  name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+}));
+
 exports.seed = function (knex) {
   // Inserts seed entries
-  return knex('seller_profile').insert([
+  return knex('profiles').insert([
+    ...profiles,
     {
       id: '00ulthapbErVUwVJy4x6',
       seller_name: 'SuperStore Rug Emporium',
