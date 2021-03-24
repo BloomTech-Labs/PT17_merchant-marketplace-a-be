@@ -1,8 +1,6 @@
 const faker = require('faker');
-const { development } = require('../../config/knexfile');
-const env = process.env.NODE_ENV || 'development';
 
-const profiles = [...new Array(5)].map((i) => ({
+const profiles = [...new Array(5)].map(() => ({
   id: faker.random.alphaNumeric(20),
   avatarUrl: faker.image.avatar(),
   email: faker.internet.email(),
