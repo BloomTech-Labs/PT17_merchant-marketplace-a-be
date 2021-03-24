@@ -1,5 +1,13 @@
 exports.up = function (knex) {
   return knex.schema
+    .createTable('roles', (tb) => {
+      tb.increments();
+      tb.string('name').unsigned().unique().notNullable();
+    })
+    .createTable('order_types', (tbl) => {
+      tbl.increments();
+      tbl.string('name').unique().notNullable();
+    })
     .createTable('seller_profile', (tb) => {
       tb.string('id', 255).unique().notNullable().primary();
       tb.string('seller_name', 255);
@@ -7,6 +15,13 @@ exports.up = function (knex) {
       tb.string('phone_number', 255);
       tb.string('physical_address', 255);
       tb.text('description');
+      tb.integer('role')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('roles')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
     })
     .createTable('category', (tb) => {
       tb.increments();
@@ -27,6 +42,13 @@ exports.up = function (knex) {
         .notNullable()
         .references('id')
         .inTable('seller_profile')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.integer('order_type_id')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('order_types')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
@@ -83,5 +105,7 @@ exports.down = function (knex) {
     .dropTableIfExists('item')
     .dropTableIfExists('tag')
     .dropTableIfExists('category')
-    .dropTableIfExists('seller_profile');
+    .dropTableIfExists('seller_profile')
+    .dropTableIfExists('order_types')
+    .dropTableIfExists('roles');
 };
