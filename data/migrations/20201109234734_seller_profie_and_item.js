@@ -1,27 +1,9 @@
 exports.up = function (knex) {
   return knex.schema
-    .createTable('roles', (tb) => {
-      tb.increments();
-      tb.string('name').unsigned().unique().notNullable();
-    })
+
     .createTable('order_types', (tbl) => {
       tbl.increments();
       tbl.string('name').unique().notNullable();
-    })
-    .createTable('seller_profile', (tb) => {
-      tb.string('id', 255).unique().notNullable().primary();
-      tb.string('seller_name', 255);
-      tb.string('email_address', 255);
-      tb.string('phone_number', 255);
-      tb.string('physical_address', 255);
-      tb.text('description');
-      tb.integer('role')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('roles')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
     })
     .createTable('category', (tb) => {
       tb.increments();
@@ -41,7 +23,7 @@ exports.up = function (knex) {
       tb.string('seller_profile_id')
         .notNullable()
         .references('id')
-        .inTable('seller_profile')
+        .inTable('profiles')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tb.integer('order_type_id')

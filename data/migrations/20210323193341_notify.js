@@ -9,7 +9,7 @@ exports.up = function (knex) {
         .string('user_id')
         .notNullable()
         .references('id')
-        .inTable('seller_profile')
+        .inTable('profiles')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tbl
@@ -21,7 +21,7 @@ exports.up = function (knex) {
       tbl
         .string('seller_id')
         .references('id')
-        .inTable('seller_profile')
+        .inTable('profiles')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tbl.primary(['user_id', 'category_id', 'seller_id']);
