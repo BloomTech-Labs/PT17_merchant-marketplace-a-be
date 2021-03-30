@@ -63,7 +63,7 @@ const router = express.Router();
  *        $ref: '#/components/responses/UnauthorizedError'
  */
 router.get('/', authRequired, function (req, res) {
-  Model.findAll('seller_profile')
+  Model.findAllWhere('profiles', { role: 1 })
     .then((profiles) => {
       res.status(200).json(profiles);
     })
@@ -110,7 +110,7 @@ router.get('/', authRequired, function (req, res) {
  */
 router.get('/:id', authRequired, function (req, res) {
   const id = String(req.params.id);
-  Model.findById('seller_profile', id)
+  Model.findById('profiles', id)
     .then((profile) => {
       if (profile) {
         res.status(200).json(profile);
@@ -164,10 +164,10 @@ router.post('/', authRequired, async (req, res) => {
   if (profile) {
     const id = profile.id || 0;
     try {
-      await Model.findById('seller_profile', id).then(async (pf) => {
+      await Model.findById('profiles', id).then(async (pf) => {
         if (pf == undefined) {
           //profile not found so lets insert it
-          await Model.create('seller_profile', profile).then((profile) =>
+          await Model.create('profiles', profile).then((profile) =>
             res
               .status(200)
               .json({ message: 'profile created', profile: profile[0] })
@@ -222,9 +222,9 @@ router.put('/', authRequired, function (req, res) {
   const profile = req.body;
   if (profile) {
     const id = profile.id || 0;
-    Model.findById('seller_profile', id)
+    Model.findById('profiles', id)
       .then(
-        Model.update('seller_profile', id, profile)
+        Model.update('profiles', id, profile)
           .then((updated) => {
             res
               .status(200)
@@ -278,8 +278,8 @@ router.put('/', authRequired, function (req, res) {
 router.delete('/:id', authRequired, function (req, res) {
   const id = req.params.id;
   try {
-    Model.findById('seller_profile', id).then((profile) => {
-      Model.remove('seller_profile', profile.id).then(() => {
+    Model.findById('profiles', id).then((profile) => {
+      Model.remove('profiles', profile.id).then(() => {
         res
           .status(200)
           .json({ message: `Profile '${id}' was deleted.`, profile: profile });
