@@ -5,8 +5,8 @@ const profiles = [...new Array(5)].map(() => ({
   avatarUrl: faker.image.avatar(),
   email: faker.internet.email(),
   name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-  physical_address: faker.address(),
-  phone_number: faker.phone(),
+  physical_address: faker.address.streetAddress(),
+  phone_number: faker.phone.phoneNumber('string'),
   role: 2,
 }));
 

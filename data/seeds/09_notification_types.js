@@ -1,3 +1,6 @@
 exports.seed = function (knex) {
-  return knex('table_name').insert([{ name: 'text' }, { name: 'email' }]);
+  return knex('notification_types').insert([
+    { name: 'text' },
+    { name: 'email' },
+  ]);
 };

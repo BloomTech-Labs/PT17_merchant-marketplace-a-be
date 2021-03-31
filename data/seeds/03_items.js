@@ -9,6 +9,7 @@ exports.seed = function (knex) {
       description:
         'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
       published: true,
+      order_type_id: 1,
     },
 
     {
@@ -19,6 +20,7 @@ exports.seed = function (knex) {
       description:
         'Bathroom rug! Keep your feet from touching cold tile. Complete garbage!',
       published: true,
+      order_type_id: 1,
     },
 
     {
@@ -29,6 +31,7 @@ exports.seed = function (knex) {
       description:
         'Colorless office carpeting! Stain resistant and optically offensive!',
       published: true,
+      order_type_id: 1,
     },
 
     {
@@ -39,6 +42,7 @@ exports.seed = function (knex) {
       description:
         'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
       published: true,
+      order_type_id: 2,
     },
 
     {
@@ -49,6 +53,7 @@ exports.seed = function (knex) {
       description:
         'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
       published: true,
+      order_type_id: 2,
     },
 
     {
@@ -59,6 +64,7 @@ exports.seed = function (knex) {
       description:
         'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
       published: true,
+      order_type_id: 3,
     },
 
     {
@@ -68,6 +74,7 @@ exports.seed = function (knex) {
       price_in_cents: 4400000,
       description: 'Are we serious with all of these persion rugs? Yes we are!',
       published: true,
+      order_type_id: 3,
     },
 
     {
@@ -77,6 +84,7 @@ exports.seed = function (knex) {
       price_in_cents: 4400000,
       description: 'Are we serious with all of these persion rugs? Yes we are!',
       published: true,
+      order_type_id: 3,
     },
 
     {
@@ -86,6 +94,7 @@ exports.seed = function (knex) {
       price_in_cents: 20000,
       description: 'Casual but stylish. Excellent for unwanted office jobs.',
       published: true,
+      order_type_id: 2,
     },
 
     {
@@ -96,6 +105,7 @@ exports.seed = function (knex) {
       description:
         'Just take it off my hands. Totally reliable and unblievably unsightly.',
       published: true,
+      order_type_id: 3,
     },
 
     {
@@ -106,6 +116,7 @@ exports.seed = function (knex) {
       description:
         'Loads of the stuff! Buy in boxes, buckets, pallets! Prepare for the Apocalypse.',
       published: true,
+      order_type_id: 1,
     },
 
     {
@@ -115,6 +126,7 @@ exports.seed = function (knex) {
       price_in_cents: 1000,
       description: 'Paperback. Like new. Subject unknown.',
       published: false,
+      order_type_id: 3,
     },
 
     {
@@ -124,6 +136,7 @@ exports.seed = function (knex) {
       price_in_cents: 999999999,
       description: "Cool, but it doesn't go as high as Elon's.",
       published: true,
+      order_type_id: 2,
     },
 
     {
@@ -134,6 +147,7 @@ exports.seed = function (knex) {
       description:
         'Gold plate your reputation and legacy! Gain political capital! Slander your enemies!',
       published: true,
+      order_type_id: 1,
     },
   ]);
 };
