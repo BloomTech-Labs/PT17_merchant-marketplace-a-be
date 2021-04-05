@@ -35,6 +35,9 @@ router.get('/', authRequired, async (req, res) => {
   const { title, category, address, zip } = req.query;
   try {
     let items = await prepareItemList();
+    if (title) {
+      items = titleCompare(items, title);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'a server error occured' });
@@ -45,11 +48,15 @@ router.get('/testdata', async (req, res) => {
   const { title } = req.query;
   let ret = testData;
   if (title) {
-    ret = ret.filter((i) =>
-      i.item_name.toLowerCase().includes(title.toLowerCase())
-    );
+    ret = titleCompare(ret, title);
   }
   res.status(200).json(ret);
 });
+
+titleCompare = (items, title) => {
+  return items.filter((i) =>
+    i.item_name.toLowerCase().includes(title.toLowerCase())
+  );
+};
 
 module.exports = router;
