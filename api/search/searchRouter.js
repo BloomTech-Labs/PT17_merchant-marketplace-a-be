@@ -41,6 +41,14 @@ router.get('/', authRequired, async (req, res) => {
     if (category) {
       items = categoryCompare(items, category);
     }
+    if (profile_address || zip || address) {
+      items = await distanceSearch(
+        items,
+        zip,
+        address ? address : profile_address
+      );
+    }
+    res.send(items);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'a server error occured' });
@@ -64,6 +72,34 @@ titleCompare = (items, title) => {
 
 categoryCompare = (items, category) => {
   return items.filter((i) => i.categories.includes(category));
+};
+
+distanceSearch = async (items, zip, address) => {
+  const query = zip ? zip : address;
+  const geoRes = await geocodeService
+    .forwardGeocode({ query, limit: 1 })
+    .send();
+  zipLat = geoRes.body.features[0].center[0];
+  zipLng = geoRes.body.features[0].center[1];
+  items = await Promise.all(
+    items.map(async (i) => {
+      i.distance = await geolib.getDistance(
+        { latitude: zipLat, longitude: zipLng },
+        { latitude: i.latitude, longitude: i.longitude }
+      );
+      return i;
+    })
+  );
+  items = items.sort((a, b) => {
+    if (a.distance < b.distance) {
+      return -1;
+    }
+    if (a.distance > b.distance) {
+      return 1;
+    }
+    return 0;
+  });
+  return items;
 };
 
 module.exports = router;
