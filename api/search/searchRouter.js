@@ -38,6 +38,9 @@ router.get('/', authRequired, async (req, res) => {
     if (title) {
       items = titleCompare(items, title);
     }
+    if (category) {
+      items = categoryCompare(items, category);
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'a server error occured' });
@@ -57,6 +60,10 @@ titleCompare = (items, title) => {
   return items.filter((i) =>
     i.item_name.toLowerCase().includes(title.toLowerCase())
   );
+};
+
+categoryCompare = (items, category) => {
+  return items.filter((i) => i.categories.includes(category));
 };
 
 module.exports = router;
