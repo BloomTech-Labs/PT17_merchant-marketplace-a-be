@@ -10,7 +10,7 @@ const mbxGeocoder = require('@mapbox/mapbox-sdk/services/geocoding');
 const baseClient = mbxClient({ accessToken: process.env.MAPBOX_SECRET });
 const geocodeService = mbxGeocoder(baseClient);
 
-prepareItemList = async () => {
+const prepareItemList = async () => {
   let items = await model.getItems();
   items = await Promise.all(
     items.map(
@@ -64,23 +64,23 @@ router.get('/testdata', async (req, res) => {
   res.status(200).json(ret);
 });
 
-titleCompare = (items, title) => {
+const titleCompare = (items, title) => {
   return items.filter((i) =>
     i.item_name.toLowerCase().includes(title.toLowerCase())
   );
 };
 
-categoryCompare = (items, category) => {
+const categoryCompare = (items, category) => {
   return items.filter((i) => i.categories.includes(category));
 };
 
-distanceSearch = async (items, zip, address) => {
+const distanceSearch = async (items, zip, address) => {
   const query = zip ? zip : address;
   const geoRes = await geocodeService
     .forwardGeocode({ query, limit: 1 })
     .send();
-  zipLat = geoRes.body.features[0].center[0];
-  zipLng = geoRes.body.features[0].center[1];
+  const zipLat = geoRes.body.features[0].center[0];
+  const zipLng = geoRes.body.features[0].center[1];
   items = await Promise.all(
     items.map(async (i) => {
       i.distance = await geolib.getDistance(
