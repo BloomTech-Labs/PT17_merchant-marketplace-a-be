@@ -3,6 +3,8 @@ const testData = require('./testdata.json');
 const model = require('./searchModel');
 const authRequired = require('../middleware/authRequired');
 
+const { getDistance } = require('geolib');
+
 //mapbox
 const mbxClient = require('@mapbox/mapbox-sdk');
 const mbxGeocoder = require('@mapbox/mapbox-sdk/services/geocoding');
@@ -83,7 +85,7 @@ const distanceSearch = async (items, zip, address) => {
   const zipLng = geoRes.body.features[0].center[1];
   items = await Promise.all(
     items.map(async (i) => {
-      i.distance = await geolib.getDistance(
+      i.distance = await getDistance(
         { latitude: zipLat, longitude: zipLng },
         { latitude: i.latitude, longitude: i.longitude }
       );
