@@ -17,4 +17,16 @@ router.get('/', authRequired, function (req, res) {
       });
   });
 
+router.post('/', authRequired, function (req, res) {
+  const order = req.body;
+
+  Model.create(order)
+    .then((order) => {
+      res.status(200).json(order);
+    })
+    .catch(error => {
+      res.status(500).json({message: error.message});
+    })
+})
+
   module.exports = router;
