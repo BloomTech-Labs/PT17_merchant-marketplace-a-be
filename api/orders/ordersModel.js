@@ -11,7 +11,12 @@ const create = async (order) => {
   return db('orders as o').insert(order).returning('*');
 };
 
+const remove = async (id) => {
+  return await db('orders').where({order_id: id}).del();
+};
+
 module.exports = {
   getOrdersBySellerId,
   create,
+  remove
 };

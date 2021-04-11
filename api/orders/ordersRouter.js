@@ -28,4 +28,16 @@ router.post('/', authRequired, function (req, res) {
     });
 });
 
+router.delete('/:orderID', authRequired, function (req, res) {
+  const {orderID} = req.params;
+
+  Model.remove(orderID)
+    .then((order) => {
+      res.status(200).json(order);
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error.message });
+    });
+});
+
 module.exports = router;
