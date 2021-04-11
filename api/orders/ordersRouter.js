@@ -29,7 +29,7 @@ router.post('/', authRequired, function (req, res) {
 });
 
 router.delete('/:orderID', authRequired, function (req, res) {
-  const {orderID} = req.params;
+  const { orderID } = req.params;
 
   Model.remove(orderID)
     .then((order) => {

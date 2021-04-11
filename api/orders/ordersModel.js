@@ -12,11 +12,11 @@ const create = async (order) => {
 };
 
 const remove = async (id) => {
-  return await db('orders').where({order_id: id}).del();
+  return await db('orders').where({ order_id: id }).del();
 };
 
 module.exports = {
   getOrdersBySellerId,
   create,
-  remove
+  remove,
 };
