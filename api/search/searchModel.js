@@ -20,4 +20,12 @@ const getItemCategories = async (item) => {
   return item;
 };
 
-module.exports = { getItems, getCategories, getItemCategories };
+const getImages = async (item) => {
+  let images = await db('photo as p')
+    .where({item_id: item.id})
+    .select('p.url as url')
+  item.images = images.map(i => i.url)
+  return item
+}
+
+module.exports = { getItems, getCategories, getItemCategories, getImages };
