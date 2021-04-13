@@ -20,6 +20,12 @@ const prepareItemList = async () => {
     )
   );
   items = await Promise.all(
+    items.map(async i => {
+      i = await model.getImages(i)
+      return i
+    })
+  )
+  items = await Promise.all(
     items.map(async (i) => {
       const geoRes = await geocodeService
         .forwardGeocode({ query: i.physical_address, limit: 1 })
