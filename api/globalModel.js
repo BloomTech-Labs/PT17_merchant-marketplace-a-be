@@ -88,7 +88,7 @@ const connectItemsAndCategories = async (itemID, catID) => {
 //finds all users containing item in their watchlist for notifications
 const findAllUsersWithCategory = async (category) => {
   return db('profiles').where({ category }).select('email');
-}
+};
 
 module.exports = {
   findAll,

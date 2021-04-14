@@ -29,6 +29,7 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('profiles')
-                    .dropTableIfExists('roles');
+  return knex.schema
+    .dropTableIfExists('profiles')
+    .dropTableIfExists('roles');
 };

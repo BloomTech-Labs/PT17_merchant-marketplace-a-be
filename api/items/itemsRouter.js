@@ -4,9 +4,9 @@ const Model = require('../globalModel');
 const endpointCreator = require('../endPoints');
 const helper = require('../helper');
 const router = express.Router();
-const sgMail = require('@sendgrid/mail')
+const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // GET items by profile ID
 router.get('/profile/:profileID/', authRequired, async (req, res) => {
@@ -48,15 +48,15 @@ router.post('/', authRequired, async (req, res) => {
     subject: 'New item has been listed into the marketplace!',
     text: 'One of the items you watch has been listed',
     html: '<strong>Come check out Merchant Marketplace to see if it meets your expectations!</strong>',
-  }
+  };
   sgMail
     .send(msg)
     .then(() => {
-      console.log('Email sent')
+      console.log('Email sent');
     })
     .catch((error) => {
-      console.error(error)
-    })
+      console.error(error);
+    });
 });
 // PUT profile can edit an item
 router.put('/:productId', authRequired, async (req, res) => {

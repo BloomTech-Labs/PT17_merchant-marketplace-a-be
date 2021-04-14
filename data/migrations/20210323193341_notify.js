@@ -12,8 +12,7 @@ exports.up = function (knex) {
         .inTable('profiles')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
-      tbl
-        .string('keyword');
+      tbl.string('keyword');
       tbl.primary(['user_id', 'keyword']);
     });
 };
