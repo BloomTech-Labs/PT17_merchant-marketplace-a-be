@@ -16,4 +16,10 @@ const editRating = async (profileId, itemId, newRating) => {
     .update({ rating: newRating }, ['profile_id', 'item_id', 'rating']);
 };
 
-module.exports = { getProfileRatings, createRating, editRating };
+const deleteRating = async (profileId, itemId) => {
+  return await knex
+    .where({ profile_id: profileId, item_id: itemId })
+    .del()
+}
+
+module.exports = { getProfileRatings, createRating, editRating, deleteRating };
