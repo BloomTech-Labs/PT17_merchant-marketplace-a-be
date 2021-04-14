@@ -13,18 +13,8 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tbl
-        .integer('category_id')
-        .references('id')
-        .inTable('category')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-      tbl
-        .string('seller_id')
-        .references('id')
-        .inTable('profiles')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-      tbl.primary(['user_id', 'category_id', 'seller_id']);
+        .string('keyword');
+      tbl.primary(['user_id', 'keyword']);
     });
 };
 
