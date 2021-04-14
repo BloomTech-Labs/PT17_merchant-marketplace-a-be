@@ -19,7 +19,12 @@ const prepareItemList = async () => {
       async (i) => await model.getItemCategories(i).then((newItem) => newItem)
     )
   );
-  
+  items = await Promise.all(
+    items.map(async i => {
+      i = await model.getImages(i)
+      return i
+    })
+  )
   items = await Promise.all(
     items.map(async (i) => {
       const geoRes = await geocodeService
