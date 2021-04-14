@@ -30,8 +30,7 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
       tbl.integer('quantity').notNullable();
-      tbl.dateTime('order_date')
-        .defaultTo(knex.fn.now(6))
+      tbl.dateTime('order_date').defaultTo(knex.fn.now(6));
     });
 };
 
