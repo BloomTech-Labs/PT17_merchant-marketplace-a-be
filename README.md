@@ -9,6 +9,7 @@ You can find the deployed project at [Merchant Marketplace API](https://pt17-mer
 ## Contributors
 
 [Allison Usher](http://www.github.com/allyjay317)
+[Nicholas Chikuji](https://github.com/chiku524)
 
 <br/>
 
