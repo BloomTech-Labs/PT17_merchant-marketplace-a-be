@@ -47,7 +47,8 @@ router.post('/', authRequired, async (req, res) => {
     from: 'chiku524@icloud.com', // Change to your verified sender
     subject: 'New item has been listed into the marketplace!',
     text: 'One of the items you watch has been listed',
-    html: '<strong>Come check out Merchant Marketplace to see if it meets your expectations!</strong>',
+    html:
+      '<strong>Come check out Merchant Marketplace to see if it meets your expectations!</strong>',
   };
   sgMail
     .send(msg)
