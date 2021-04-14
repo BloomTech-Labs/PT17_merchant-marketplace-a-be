@@ -15,6 +15,7 @@ exports.up = function(knex) {
       .onUpdate('CASCADE')
     tbl.integer('rating')
       .notNullable()
+    tbl.primary(['profile_id', 'item_id', 'rating'])
   })
 };
 
