@@ -2,116 +2,47 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ed92d5d1b241bfbce465/maintainability)](https://codeclimate.com/repos/607684ec505cb617db00601f/maintainability)
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
-
 # Project
 
-You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+You can find the deployed project at [Merchant Marketplace API](https://pt17-merchant-marketplace-a.herokuapp.com/).
 
 ## Contributors
 
-🚫Add link to seperate contributor page
+[Allison Usher](http://www.github.com/allyjay317)
 
 <br/>
-
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![node express](https://img.shields.io/node/v-lts/express)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
-
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Create orders with UUID order id
+- Store items with shipping and pick up options
+- Notifications using SendGrid
+- Search for items using a name or category and recieve a list sorted by distance from address given, or from profile
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to `Heroku`
 
-#### [Front end](🚫link to front end repo here) built using
+#### [Front end](http://github.com/Lambda-School-Labs/PT17_merchant-marketplace-a-fe) built using
 
-#### 🚫 back end framework and key libraries go here
-
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- React
+- Ant Design
+- Redux
 
 # APIs
-
-🚫 replace list below with a link to live swagger doc
-
-Profiles
-| Request | Returns |
-| ----- | ----- |
-| GET /profile/
-| GET /profile/:id/
-| POST /profile/ | returns body and message
-| PUT /profile | returns body and message
-| DELETE /profile/:id/ 
-
-POSTING ITEMS
-| Request | Returns |
-| ----- | ----- |
-| GET /item/profile/:profileId/ 
-| GET /item/:itemId/ | returns body
-| POST /item/ | don’t forget to post seller_profile_id
-| PUT  /item/:id | returns body
-| DELETE  /item/:id/ | returns id
-
-TAG_ITEM
-| Request | Returns |
-| ----- | ----- |
-| POST /item/:itemId/tag/:tagId/
-
-CATEGORY_ITEM
-| Request | Returns |
-| ----- | ----- |
-| POST /item/:itemId/categories/:catId/
-
-PHOTO
-| Request | Returns |
-| ----- | ----- |
-| GET /photo/:item_id/ | return body
-| POST /photo/ | return body. Don’t forget to post item_id
-
-CATEGORY
-| Request | Returns |
-| ----- | ----- |
-| GET /category/ | return list of categories
-| GET /category/:itemId/ 
-| POST /category/ | return body
-
-TAG
-| Request | Returns |
-| ----- | ----- |
-| GET /tag/ | return list of tags
-| GET /tag/item/:itemId/ | return items with tags
-| POST /tag/ | return body
+https://pt17-merchant-marketplace-a.herokuapp.com/api-docs/
 
 
-## Authentication API here
+## Okta authentication
 
-🚫Replace text below with a description and link to your API swagger docs
+Uses Okta to handle user information
+https://pt17-merchant-marketplace-a.herokuapp.com/api-docs/
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Mapbox
 
-## Payment API here
-
-🚫Replace text below with a description of the API or delete
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Using mapbox, we can find lattitude and longitude coordinates given any zip code or address
 
 ## Getting Started
 
@@ -125,6 +56,7 @@ You can do anything your heart can imagine. In life you need colors. This is whe
 - `DATABASE_URL` - connection string for postgres database
 - `OKTA_URL_ISSUER` - The complete issuer URL for verifying okta access tokens. `https://example.okta.com/oauth2/default`
 - `OKTA_CLIENT_ID` - the okta client ID.
+- `MAPBOX_SECRET` - the mapbox client secret
 
 See `.env.sample` file for example values
 
@@ -194,4 +126,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+See [Backend Documentation](https://pt17-merchant-marketplace-a.herokuapp.com/api-docs/) for details on the backend of our project.
