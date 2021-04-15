@@ -41,7 +41,6 @@ router.get('/:itemID', authRequired, async (req, res) => {
 router.post('/', authRequired, async (req, res) => {
   endpointCreator.createData('item', req, res);
   const users = await Model.findAllUsersWithCategory(req.body.category);
-  console.log('email sent to', users);
   const msg = {
     to: users, // Change to your recipient
     from: 'chiku524@icloud.com', // Change to your verified sender
