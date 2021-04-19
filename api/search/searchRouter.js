@@ -38,8 +38,12 @@ const prepareItemList = async () => {
   return items;
 };
 
-router.get('/', authRequired, async (req, res) => {
-  const profile_address = req.profile.physical_address;
+router.get('/', async (req, res) => {
+  const { profile } = req;
+  let profile_address;
+  if (profile) {
+    profile_address = req.profile.physical_address;
+  }
   const { title, category, address, zip } = req.query;
   try {
     let items = await prepareItemList();
