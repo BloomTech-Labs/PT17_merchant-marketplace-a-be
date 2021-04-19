@@ -1,4 +1,4 @@
-const knex = require('../../data/db-config')
+const knex = require('../../data/db-config');
 
 const getProfileRatings = async (id) => {
   return await knex('ratings as r')
@@ -17,9 +17,7 @@ const editRating = async (profileId, itemId, newRating) => {
 };
 
 const deleteRating = async (profileId, itemId) => {
-  return await knex
-    .where({ profile_id: profileId, item_id: itemId })
-    .del()
-}
+  return await knex.where({ profile_id: profileId, item_id: itemId }).del();
+};
 
 module.exports = { getProfileRatings, createRating, editRating, deleteRating };

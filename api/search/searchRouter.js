@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const testData = require('./testdata.json');
 const model = require('./searchModel');
-const authRequired = require('../middleware/authRequired');
 
 const { getDistance } = require('geolib');
 
