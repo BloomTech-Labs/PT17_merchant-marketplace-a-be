@@ -20,12 +20,12 @@ describe('profiles router endpoints', () => {
 
   describe('GET /profiles', () => {
     it('should return 200', async () => {
-      Profiles.findAll.mockResolvedValue([]);
+      Profiles.findAllWhere.mockResolvedValue([]);
       const res = await request(server).get('/profiles');
 
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(0);
-      expect(Profiles.findAll.mock.calls.length).toBe(1);
+      expect(Profiles.findAllWhere.mock.calls.length).toBe(1);
     });
   });
 
