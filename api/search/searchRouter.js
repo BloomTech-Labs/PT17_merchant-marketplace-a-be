@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const testData = require('./testdata.json');
 const model = require('./searchModel');
-const authRequired = require('../middleware/authRequired');
 
 const { getDistance } = require('geolib');
 
@@ -21,6 +20,12 @@ const prepareItemList = async () => {
   );
   items = await Promise.all(
     items.map(async (i) => {
+      i = await model.getImages(i);
+      return i;
+    })
+  );
+  items = await Promise.all(
+    items.map(async (i) => {
       const geoRes = await geocodeService
         .forwardGeocode({ query: i.physical_address, limit: 1 })
         .send();
@@ -32,8 +37,12 @@ const prepareItemList = async () => {
   return items;
 };
 
-router.get('/', authRequired, async (req, res) => {
-  const profile_address = req.profile.physical_address;
+router.get('/', async (req, res) => {
+  const { profile } = req;
+  let profile_address;
+  if (profile) {
+    profile_address = req.profile.physical_address;
+  }
   const { title, category, address, zip } = req.query;
   try {
     let items = await prepareItemList();
