@@ -22,9 +22,12 @@ exports.up = (knex) => {
         .inTable('roles')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
+      table.string('category');
+      table.boolean('text_notification').defaultTo(false);
+      table.boolean('email_notification').defaultTo(false);
     });
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('profiles');
+  return knex.schema.dropTableIfExists('profiles').dropTableIfExists('roles');
 };

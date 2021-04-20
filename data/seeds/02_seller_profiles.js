@@ -22,6 +22,9 @@ exports.seed = function (knex) {
       physical_address: '100 Davidson Street, Maine',
       description: 'Rugs, Rugs, Rugs! Discount Rugs, Fine Rugs, Bathroom Rugs!',
       role: 1,
+      category: 'rugs',
+      text_notification: false,
+      email_notification: true,
     },
 
     {
