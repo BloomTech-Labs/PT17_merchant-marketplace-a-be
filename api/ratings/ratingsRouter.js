@@ -3,14 +3,6 @@ const authRequired = require('../middleware/authRequired');
 const db = require('./ratingsModel');
 const globalDb = require('../globalModel');
 
-const checkIfItemExists = async (itemId) => {
-  const item = await globalDb.findById('item', itemId);
-  if (!item) {
-    return false;
-  }
-  return true;
-};
-
 router.get('/', authRequired, async (req, res) => {
   const profileId = req.profile.id
   try {
@@ -30,7 +22,8 @@ router.post('/', authRequired, async (req, res) => {
       .json({ message: 'rating must include an itemId and a rating' });
   } else {
     try {
-      if (!(await checkIfItemExists(itemId))) {
+      const item = await globalDb.findById('item', itemId)
+      if (!item) {
         res.status(404).json({ message: 'itemId does not exist' });
       } else {
         const newRating = await db.createRating({
@@ -50,7 +43,8 @@ router.put('/:itemId', authRequired, (req, res) => {
   const profileId = req.profile.id;
   const { itemId, rating } = req.params;
   try {
-    if (!(await checkIfItemExists(itemId))) {
+    const item = await globalDb.findById('item', itemId)
+    if (!item) {
       res.status(404).json({ message: 'itemId does not exist' });
     } else {
       const newRating = db.editRating(profileId, itemId, rating)
