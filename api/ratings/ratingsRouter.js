@@ -3,6 +3,14 @@ const authRequired = require('../middleware/authRequired');
 const db = require('./ratingsModel');
 const globalDb = require('../globalModel');
 
+const checkIfItemExists = async (itemId) => {
+  const item = await globalDb.findById('item', itemId);
+  if (!item) {
+    return false;
+  }
+  return true;
+};
+
 router.get('/', authRequired, async (req, res) => {
   const profileId = req.profile.id
   try {
@@ -68,10 +76,4 @@ router.delete('/:itemId', authRequired, (req, res) => {
   }
 });
 
-const checkIfItemExists = async (itemId) => {
-  const item = await globalDb.findById('item', itemId);
-  if (!item) {
-    return false;
-  }
-  return true;
-};
+
