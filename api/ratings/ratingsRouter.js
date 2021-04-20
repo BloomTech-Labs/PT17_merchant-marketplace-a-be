@@ -4,7 +4,7 @@ const db = require('./ratingsModel');
 const globalDb = require('../globalModel');
 
 router.get('/', authRequired, async (req, res) => {
-  const profileId = req.profile.id
+  const profileId = req.profile.id;
   try {
     const ratings = await db.getProfileRatings(profileId);
     res.status(200).json(ratings);
@@ -15,14 +15,14 @@ router.get('/', authRequired, async (req, res) => {
 
 router.post('/', authRequired, async (req, res) => {
   const profileId = req.profile.id;
-  const { itemId, rating } = req.params;
+  const { itemId, rating } = req.body;
   if (!itemId || !rating) {
     res
       .status(400)
       .json({ message: 'rating must include an itemId and a rating' });
   } else {
     try {
-      const item = await globalDb.findById('item', itemId)
+      const item = await globalDb.findById('item', itemId);
       if (!item) {
         res.status(404).json({ message: 'itemId does not exist' });
       } else {
@@ -31,7 +31,7 @@ router.post('/', authRequired, async (req, res) => {
           item_id: itemId,
           rating,
         });
-        res.status(201).json(newRating);
+        res.status(201).json(newRating[0]);
       }
     } catch (err) {
       res.status(500).json({ message: 'a server error has occurred' });
@@ -39,35 +39,33 @@ router.post('/', authRequired, async (req, res) => {
   }
 });
 
-router.put('/:itemId', authRequired, (req, res) => {
+router.put('/:itemId', authRequired, async (req, res) => {
   const profileId = req.profile.id;
-  const { itemId, rating } = req.params;
+  const { itemId, rating } = req.body;
   try {
-    const item = await globalDb.findById('item', itemId)
+    const item = await globalDb.findById('item', itemId);
     if (!item) {
       res.status(404).json({ message: 'itemId does not exist' });
     } else {
-      const newRating = db.editRating(profileId, itemId, rating)
-      res.status(200).json(newRating)
+      const newRating = db.editRating(profileId, itemId, rating);
+      res.status(200).json(newRating);
     }
   } catch (err) {
     res.status(500).json({ message: 'a server error has occurred' });
   }
 });
 
-router.delete('/:itemId', authRequired, (req, res) => {
+router.delete('/:itemId', authRequired, async (req, res) => {
   const profileId = req.profile.id;
-  const {itemId} = req.params
-  try{
-    const count = await db.deleteRating(profileId, itemId)
-    count > 0 ?
-      res.status(204)
-    :
-      res.status(404).json({message: 'could not find itemId'})
-    
-  } catch(err) {
+  const { itemId } = req.params;
+  try {
+    const count = await db.deleteRating(profileId, itemId);
+    count > 0
+      ? res.status(204).send()
+      : res.status(404).json({ message: 'could not find itemId' });
+  } catch (err) {
     res.status(500).json({ message: 'a server error has occurred' });
   }
 });
 
-
+module.exports = router;
