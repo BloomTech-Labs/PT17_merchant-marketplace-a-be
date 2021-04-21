@@ -7,7 +7,7 @@ exports.up = function (knex) {
     })
     .createTable('category', (tb) => {
       tb.increments();
-      tb.string('category_name', 255);
+      tb.string('category_name', 255).unique();
     })
     .createTable('tag', (tb) => {
       tb.increments();
@@ -31,6 +31,11 @@ exports.up = function (knex) {
         .unsigned()
         .references('id')
         .inTable('order_types')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+      tb.string('category')
+        .references('category_name')
+        .inTable('category')
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
@@ -88,6 +93,5 @@ exports.down = function (knex) {
     .dropTableIfExists('tag')
     .dropTableIfExists('category')
     .dropTableIfExists('seller_profile')
-    .dropTableIfExists('order_types')
-    .dropTableIfExists('roles');
+    .dropTableIfExists('order_types');
 };

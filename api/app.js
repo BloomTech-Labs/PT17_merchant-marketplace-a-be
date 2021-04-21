@@ -30,6 +30,7 @@ const categoryRouter = require('./category/categoryRouter');
 const ordersRouter = require('./orders/ordersRouter');
 
 const searchRouter = require('./search/searchRouter');
+const ratingsRouter = require('./ratings/ratingsRouter');
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use(['/photo', '/photos'], photoRouter);
 app.use(['/category', '/categories'], categoryRouter);
 app.use('/search', searchRouter);
 app.use('/orders', ordersRouter);
+app.use('/ratings', ratingsRouter);
 
 //catch 404 and forward to error handler
 app.use(function (req, res, next) {
