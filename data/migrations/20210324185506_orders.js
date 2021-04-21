@@ -31,7 +31,6 @@ exports.up = function (knex) {
         .onUpdate('CASCADE');
       tbl.integer('quantity').notNullable();
       tbl.dateTime('order_date').defaultTo(knex.fn.now(6));
-
     });
 };
 
