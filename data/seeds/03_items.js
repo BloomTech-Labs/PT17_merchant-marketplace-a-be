@@ -3,11 +3,11 @@ exports.seed = function (knex) {
   return knex('item').insert([
     {
       seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Persian rug',
+      item_name: 'Definitely not, a Persian rug',
       quantity_available: 3,
       price_in_cents: 3400000,
       description:
-        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+        'We swear, this is totally not a persian rug, just your normal, every day sausage',
       published: true,
       order_type_id: 1,
     },
@@ -36,53 +36,51 @@ exports.seed = function (knex) {
 
     {
       seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Another Persian rug!',
+      item_name: 'Wood Grain Table',
       quantity_available: 5,
       price_in_cents: 4400000,
-      description:
-        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      description: 'A beautiful Oak table',
       published: true,
       order_type_id: 2,
     },
 
     {
       seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Persian rug, but better!',
+      item_name: 'Set of dining chairs',
       quantity_available: 5,
       price_in_cents: 4400000,
-      description:
-        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      description: 'Our finest furniture',
       published: true,
       order_type_id: 2,
     },
 
     {
       seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Persian rug, again',
+      item_name: 'A complete home',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description: "we're literally just selling this home! buy it!",
+      published: true,
+      order_type_id: 3,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Photo of Christopher Walken',
+      quantity_available: 5,
+      price_in_cents: 4400000,
+      description: 'You know you want it',
+      published: true,
+      order_type_id: 3,
+    },
+
+    {
+      seller_profile_id: '00ulthapbErVUwVJy4x6',
+      item_name: 'Soda can crab',
       quantity_available: 5,
       price_in_cents: 4400000,
       description:
-        'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
-      published: true,
-      order_type_id: 3,
-    },
-
-    {
-      seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Persian Rug',
-      quantity_available: 5,
-      price_in_cents: 4400000,
-      description: 'Are we serious with all of these persion rugs? Yes we are!',
-      published: true,
-      order_type_id: 3,
-    },
-
-    {
-      seller_profile_id: '00ulthapbErVUwVJy4x6',
-      item_name: 'Final Persian Rug',
-      quantity_available: 5,
-      price_in_cents: 4400000,
-      description: 'Are we serious with all of these persion rugs? Yes we are!',
+        'Will haunt me for the rest of my days, please take it off my hands',
       published: true,
       order_type_id: 3,
     },
