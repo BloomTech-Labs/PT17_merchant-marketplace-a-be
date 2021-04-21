@@ -33,8 +33,8 @@ You can find the deployed project at [Merchant Marketplace API](https://pt17-mer
 - Redux
 
 # APIs
-https://pt17-merchant-marketplace-a.herokuapp.com/api-docs/
 
+https://pt17-merchant-marketplace-a.herokuapp.com/api-docs/
 
 ## Okta authentication
 
