@@ -1,10 +1,10 @@
 var dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
 
-const pg = require('pg');
-// pg.defaults.ssl = {
-//   rejectUnauthorized: false,
-// };
+// const pg = require('pg');
+// // pg.defaults.ssl = {
+// //   rejectUnauthorized: false,
+// // };
 
 module.exports = {
   development: {
