@@ -8,6 +8,10 @@ const findItemByProfile = async (seller_profile_id) => {
   return await db('item').select('*').where({ seller_profile_id });
 };
 
+const findAllWhere = async (text, cdn) => {
+  return await db(text).where(cdn);
+};
+
 const createBySellerID = async (sellerID, item) => {
   return await db('item').insert(item).where({ seller_profile_id: sellerID });
 };
@@ -84,6 +88,7 @@ const connectItemsAndCategories = async (itemID, catID) => {
 module.exports = {
   findAll,
   findBy,
+  findAllWhere,
   findById,
   findItemByProfile,
   create,
