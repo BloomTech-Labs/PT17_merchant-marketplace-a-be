@@ -1,6 +1,6 @@
 var dotenv = require('dotenv');
 dotenv.config({
-  path: '../.env'
+  path: '../.env',
 });
 
 // const pg = require('pg');
@@ -17,10 +17,10 @@ module.exports = {
       ssl: false,
     },
     migrations: {
-      directory: '../data/migrations'
+      directory: '../data/migrations',
     },
     seeds: {
-      directory: '../data/seeds'
+      directory: '../data/seeds',
     },
     pool: {
       min: 2,
@@ -32,24 +32,18 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: '../data/migrations'
+      directory: '../data/migrations',
     },
     seeds: {
-      directory: '../data/seeds'
+      directory: '../data/seeds',
     },
   },
 
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
-    migrations: {
-      directory: '../data/migrations'
-    },
-    seeds: {
-      directory: '../data/seeds'
-    },
-    ssl: {
-      rejectUnauthorized: false
-    },
+    migrations: { directory: '../data/migrations' },
+    seeds: { directory: '../data/seeds' },
+    ssl: { rejectUnauthorized: false },
   },
 };
