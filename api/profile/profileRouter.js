@@ -346,4 +346,20 @@ router.delete('/:id/cart/:item', async (req, res) => {
   }
 });
 
+router.put('/:id/cart/:item', async (req, res) => {
+  const { id, item } = req.params;
+  const { qty } = req.body;
+  if (!qty || qty <= 0) {
+    res.status(400).json({ message: 'must include a new qty greater than 0' });
+  } else
+    try {
+      const cart = await db.editQtyInCart(id, item, qty);
+      res.status(201).json(cart);
+    } catch (err) {
+      res.status(500).json({
+        message: 'A server error has occurred while editing qty in cart',
+      });
+    }
+});
+
 module.exports = router;
