@@ -18,6 +18,8 @@ exports.up = function (knex) {
       .inTable('order_types')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
+    tbl.integer('qty').notNullable();
+    tbl.primary('profile_id', 'item_id');
   });
 };
 

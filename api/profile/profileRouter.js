@@ -306,4 +306,26 @@ router.get('/:id/cart', async (req, res) => {
   }
 });
 
+router.post('/:id/cart', async (req, res) => {
+  const { id } = req.params;
+  const item = req.body;
+  try {
+    if (item.item_id && item.qty && item.order_type) {
+      const cart = await db.addItemToShoppingCart({
+        profile_id: id,
+        ...item,
+      });
+      res.status(201).json(cart);
+    } else {
+      res
+        .status(400)
+        .json('Must include item_id, qty, and order_type to add to cart');
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'A server error has occurred while adding to cart' });
+  }
+});
+
 module.exports = router;
