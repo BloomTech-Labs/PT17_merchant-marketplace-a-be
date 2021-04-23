@@ -2,6 +2,7 @@ const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
+const db = require('./profileModel');
 
 /**
  * @swagger
@@ -290,6 +291,18 @@ router.delete('/:id', authRequired, function (req, res) {
       message: `Could not delete profile with ID: ${id}`,
       error: err.message,
     });
+  }
+});
+
+router.get('/:id/cart', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const cart = await db.getShoppingCart(id);
+    res.status(200).json(cart);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'A server error has occurred while getting cart' });
   }
 });
 
