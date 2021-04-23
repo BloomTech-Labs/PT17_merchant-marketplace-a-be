@@ -328,4 +328,22 @@ router.post('/:id/cart', async (req, res) => {
   }
 });
 
+router.delete('/:id/cart/:item', async (req, res) => {
+  const { id, item } = req.params;
+  try {
+    const count = await db.removeItemFromShoppingCart(id, item);
+    if (count > 0) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({
+        message: `no items with id ${item} in profile ${id}'s shopping cart`,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: 'A server error has occurred while removing from cart',
+    });
+  }
+});
+
 module.exports = router;
