@@ -2,6 +2,7 @@ const express = require('express');
 const authRequired = require('../middleware/authRequired');
 const Model = require('../globalModel');
 const router = express.Router();
+const db = require('./profileModel');
 
 /**
  * @swagger
@@ -291,6 +292,74 @@ router.delete('/:id', authRequired, function (req, res) {
       error: err.message,
     });
   }
+});
+
+router.get('/:id/cart', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const cart = await db.getShoppingCart(id);
+    res.status(200).json(cart);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'A server error has occurred while getting cart' });
+  }
+});
+
+router.post('/:id/cart', async (req, res) => {
+  const { id } = req.params;
+  const item = req.body;
+  try {
+    if (item.item_id && item.qty && item.order_type) {
+      const cart = await db.addItemToShoppingCart({
+        profile_id: id,
+        ...item,
+      });
+      res.status(201).json(cart);
+    } else {
+      res
+        .status(400)
+        .json('Must include item_id, qty, and order_type to add to cart');
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'A server error has occurred while adding to cart' });
+  }
+});
+
+router.delete('/:id/cart/:item', async (req, res) => {
+  const { id, item } = req.params;
+  try {
+    const count = await db.removeItemFromShoppingCart(id, item);
+    if (count > 0) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({
+        message: `no items with id ${item} in profile ${id}'s shopping cart`,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: 'A server error has occurred while removing from cart',
+    });
+  }
+});
+
+router.put('/:id/cart/:item', async (req, res) => {
+  const { id, item } = req.params;
+  const { qty } = req.body;
+  if (!qty || qty <= 0) {
+    res.status(400).json({ message: 'must include a new qty greater than 0' });
+  } else
+    try {
+      const cart = await db.editQtyInCart(id, item, qty);
+      res.status(201).json(cart);
+    } catch (err) {
+      res.status(500).json({
+        message: 'A server error has occurred while editing qty in cart',
+      });
+    }
 });
 
 module.exports = router;
