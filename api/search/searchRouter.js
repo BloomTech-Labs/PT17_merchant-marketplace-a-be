@@ -61,7 +61,6 @@ router.get('/', async (req, res) => {
     }
     res.send(items);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: 'a server error occured' });
   }
 });

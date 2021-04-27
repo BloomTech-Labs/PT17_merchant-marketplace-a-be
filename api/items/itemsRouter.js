@@ -49,14 +49,9 @@ router.post('/', authRequired, async (req, res) => {
     html:
       '<strong>Come check out Merchant Marketplace to see if it meets your expectations!</strong>',
   };
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log('Email sent');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  sgMail.send(msg).catch((error) => {
+    console.error(error);
+  });
 });
 // PUT profile can edit an item
 router.put('/:productId', authRequired, async (req, res) => {
